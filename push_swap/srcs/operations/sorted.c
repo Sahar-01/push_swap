@@ -2,13 +2,11 @@
 
 bool    sorted(t_node *stack)
 {
-    if (!stack)
-        return (1);
-    while(stack->next)
+    while (stack && stack->next)
     {
-        if (stack->nbr < stack->next->nbr)
-            return (true);
+        if (stack->nbr > stack->next->nbr)
+            return (false);
         stack = stack->next;
     }
-    return (false);
+    return (true);
 }

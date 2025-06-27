@@ -35,6 +35,26 @@ t_node  *get_max(t_node *stack)
     return (max_node);
 }
 
+t_node  *get_min(t_node *stack)
+{
+    long    MIN;
+    t_node  *min_node;
+
+    MIN = LONG_MAX;
+    if (!stack)
+        return (0);
+    while (stack)
+    {
+        if (stack->nbr < MIN)
+        {
+            MIN = stack->nbr;
+            min_node = stack;
+        }
+        stack = stack->next;
+    }
+    return (min_node);
+}
+
 void    free_stack(t_node **stack) //Define a function to free a stack if there are errors
 {
     t_node    *tmp; //To store the next node in the stack before the current node is freed, because once a node is freed, you can't access its next pointer

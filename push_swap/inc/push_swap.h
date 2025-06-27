@@ -36,6 +36,7 @@ void    ps_lstadd_back(t_node **stack, t_node *new);
 t_node  *find_last(t_node *stack);
 t_node  *find_first(t_node *stack);
 t_node  *get_max(t_node *stack);
+t_node  *get_min(t_node *stack);
 int     stack_len(t_node *stack);
 bool    sorted(t_node *stack);
 void    free_stack(t_node **stack);

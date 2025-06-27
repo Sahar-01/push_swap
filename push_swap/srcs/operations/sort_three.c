@@ -1,14 +1,28 @@
 #include "../../inc/push_swap.h"
 
-void sort_three(t_node **a)
+void    sort_three(t_node **a)
 {
-    t_node      *MAX_NODE;
+    int first;
+    int second;
+    int third;
 
-    MAX_NODE = get_max(*a);
-    if (MAX_NODE == *a)
-        ra(a, false);
-    else if ((*a)->next == MAX_NODE)
+    first = (*a)->nbr;
+    second = (*a)->next->nbr;
+    third = (*a)->next->next->nbr;
+    if (first > second && second < third && first < third)
+        sa(a, false);
+    else if (first > second && second > third)
+    {
+        sa(a, false);
         rra(a, false);
-     if ((*a)->nbr > (*a)->next->nbr)
-        sa(a, false);      
+    }
+    else if (first > second && second < third && first > third)
+        ra(a, false);
+    else if (first < second && second > third && first < third)
+    {
+        sa(a, false);
+        ra(a, false);
+    }
+    else if (first < second && second > third && first > third)
+        rra(a, false);
 }
