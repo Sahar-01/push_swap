@@ -6,9 +6,11 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:01:46 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:01:52 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/06/27 10:27:55 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+#include "../../inc/push_swap.h"
+
 static void	rrotate(t_node **stack)
 {
 	t_node	*first_node;
