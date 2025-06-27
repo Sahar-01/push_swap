@@ -1,15 +1,15 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/21 16:33:38 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/21 17:18:05 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/06/21 16:50:29 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 static char	*extract_line(char *src)
 {
@@ -74,7 +74,7 @@ static char	*read_save(int fd, char *rem)
 
 char	*get_next_line(int fd)
 {
-	static char	rem[FD_SIZE];
+	static char	*rem[FD_SIZE];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || fd >= FD_SIZE)

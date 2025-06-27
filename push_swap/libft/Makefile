@@ -1,12 +1,10 @@
 # **************************************************************************** #
-
 NAME = libft.a
 
-# Directories
 SRC_DIR = src
 INC_DIR = inc
 
-LIBFT_DIR = $(SRC_DIR)/Libft
+LIBFT_DIR = $(SRC_DIR)/libft
 PRINTF_DIR = $(SRC_DIR)/ft_printf
 GNL_DIR = $(SRC_DIR)/get_next_line
 

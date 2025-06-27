@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/23 12:14:37 by scheragh          #+#    #+#             */
-/*   Updated: 2024/12/23 12:22:05 by scheragh         ###   ########.fr       */
+/*   Created: 2025/06/27 10:22:10 by scheragh          #+#    #+#             */
+/*   Updated: 2025/06/27 10:22:29 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "libft.h"
 
-void    ft_lstiter(t_list *lst, void (*f)(void *))
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    if (!lst || !f)
-        return;
-    while (lst)
-    {
-        f(lst->content);
-        lst = lst->next;
-    }
+	if (!lst || !f)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

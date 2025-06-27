@@ -1,28 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_three.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/27 10:02:55 by scheragh          #+#    #+#             */
+/*   Updated: 2025/06/27 10:03:22 by scheragh         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 #include "../../inc/push_swap.h"
 
-void    sort_three(t_node **a)
+void	sort_three(t_node **a)
 {
-    int first;
-    int second;
-    int third;
+	t_node	*max_node;
 
-    first = (*a)->nbr;
-    second = (*a)->next->nbr;
-    third = (*a)->next->next->nbr;
-    if (first > second && second < third && first < third)
-        sa(a, false);
-    else if (first > second && second > third)
-    {
-        sa(a, false);
-        rra(a, false);
-    }
-    else if (first > second && second < third && first > third)
-        ra(a, false);
-    else if (first < second && second > third && first < third)
-    {
-        sa(a, false);
-        ra(a, false);
-    }
-    else if (first < second && second > third && first > third)
-        rra(a, false);
+	max_node = get_max(*a);
+	if (max_node == *a)
+		ra(a, false);
+	else if ((*a)->next == max_node)
+		rra(a, false);
+	if ((*a)->nbr > (*a)->next->nbr)
+		sa(a, false);
 }
