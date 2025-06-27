@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/12/11 17:57:00 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/15 15:53:25 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_lstsize(t_list *lst)
 {
-	t_node	*a;
+	int	size;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
+	size = 0;
+	while (lst)
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
+		size++;
+		lst = lst->next;
 	}
-	free_stack(&a);
-	return (0);
+	return (size);
 }

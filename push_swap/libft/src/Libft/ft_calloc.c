@@ -1,36 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/12/10 17:46:48 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/15 15:49:07 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include <stddef.h>
+#include <stdlib.h>
 
-int	main(int argc, char **argv)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	t_node	*a;
+	size_t	total_size;
+	size_t	i;
+	void	*ptr;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
+	i = 0;
+	if (nmemb == 0 || size == 0)
+		return (malloc(0));
+	total_size = nmemb * size;
+	if (total_size / nmemb != size)
+		return (NULL);
+	ptr = malloc(total_size);
+	if (ptr == NULL)
+		return (NULL);
+	while (i < total_size)
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
+		((unsigned char *)ptr)[i] = 0;
+		i++;
 	}
-	free_stack(&a);
-	return (0);
+	return (ptr);
 }

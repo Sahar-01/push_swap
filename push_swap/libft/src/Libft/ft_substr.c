@@ -1,36 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/12/10 17:57:28 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/23 10:34:37 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include <stdlib.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
-	t_node	*a;
+	char	*ret;
+	size_t	s_len;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
-	}
-	free_stack(&a);
-	return (0);
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	if (s_len - start < len)
+		len = s_len - start;
+	ret = malloc(sizeof(char) * (len + 1));
+	if (!ret)
+		return (NULL);
+	ft_strlcpy(ret, s + start, len + 1);
+	return (ret);
 }

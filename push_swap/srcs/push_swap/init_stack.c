@@ -1,20 +1,7 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   init_stack.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:21 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:14:25 by scheragh         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "../../inc/push_swap.h"
 #include <limits.h>
 
-/* convert ascii to long (no overflow check here; we check later) */
-static long	ft_atol(const char *s)
+static long	ps_atol(const char *s)
 {
 	long	res;
 	int		sign;
@@ -24,26 +11,33 @@ static long	ft_atol(const char *s)
 	while (*s == ' ' || (*s >= 9 && *s <= 13))
 		s++;
 	if (*s == '-' || *s == '+')
-		if (*s++ == '-')
+	{
+		if (*s == '-')
 			sign = -1;
+		s++;
+	}
 	while (*s && ft_isdigit(*s))
 		res = res * 10 + (*s++ - '0');
 	return (res * sign);
 }
 
-/* raise an error, free args if needed, and exit */
-static void	ps_error(char **args)
+static void	ps_error(char **arr)
 {
-	if (args)
-		free(args);
+	int	i;
+
+	if (arr)
+	{
+		i = 0;
+		while (arr[i])
+			free(arr[i++]);
+		free(arr);
+	}
 	ft_putstr_fd("Error\n", 2);
 	exit(EXIT_FAILURE);
 }
 
-/* ensure value fits in 32-bit signed int and is not duplicated */
 static void	validate_and_push(t_node **a, long v)
 {
-	t_node	*new;
 	t_node	*tmp;
 
 	if (v < INT_MIN || v > INT_MAX)
@@ -55,10 +49,7 @@ static void	validate_and_push(t_node **a, long v)
 			ps_error(NULL);
 		tmp = tmp->next;
 	}
-	new = ps_lstnew((int)v);
-	if (!new)
-		ps_error(NULL);
-	ps_lstadd_back(a, new);
+	ps_lstadd_back(a, ps_lstnew((int)v));
 }
 
 void	index_stack(t_node **stack)
@@ -78,13 +69,24 @@ void	index_stack(t_node **stack)
 void	init_stack(t_node **a, char **argv)
 {
 	int		i;
+	int		j;
 	long	val;
+	char	**split;
 
 	i = 0;
 	while (argv[i])
 	{
-		val = ft_atol(argv[i]);
-		validate_and_push(a, val);
+		split = ft_split(argv[i], ' ');
+		if (!split || !*split)
+			ps_error(split);
+		j = 0;
+		while (split[j])
+		{
+			val = ps_atol(split[j]);
+			validate_and_push(a, val);
+			free(split[j++]);
+		}
+		free(split);
 		i++;
 	}
 	index_stack(a);

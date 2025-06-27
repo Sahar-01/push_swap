@@ -1,36 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/11/26 16:27:03 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/03 18:04:54 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isalpha(int c)
 {
-	t_node	*a;
-
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
-	}
-	free_stack(&a);
+	if ((c <= 90 && c >= 65) || (c <= 122 && c >= 97))
+		return (1);
 	return (0);
 }

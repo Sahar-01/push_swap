@@ -1,36 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/12/11 19:06:15 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/23 09:31:29 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
 
-int	main(int argc, char **argv)
+#include "libft.h"
+
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	t_node	*a;
+	char	*str;
+	int		i;
+	int		j;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
+	i = 0;
+	j = 0;
+	if (!s1 || !s2)
+		return (NULL);
+	str = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!str)
+		return (NULL);
+	while (s1[i])
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
+		str[i] = s1[i];
+		i++;
 	}
-	free_stack(&a);
-	return (0);
+	while (s2[j])
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }

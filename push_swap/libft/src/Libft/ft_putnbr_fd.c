@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/12/15 19:31:40 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/23 09:45:57 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include <unistd.h>
 
-int	main(int argc, char **argv)
+void	ft_putnbr_fd(int n, int fd)
 {
-	t_node	*a;
+	char	p;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
+	if (n < 0)
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
+		if (n == -2147483648)
+		{
+			write(fd, "-2147483648", 11);
+			return ;
+		}
 		else
-			printf("very cool");
+		{
+			n = -n;
+			write(fd, "-", 1);
+			ft_putnbr_fd(n, fd);
+			return ;
+		}
 	}
-	free_stack(&a);
-	return (0);
+	if (n > 9)
+		ft_putnbr_fd(n / 10, fd);
+	p = (n % 10) + 48;
+	write(fd, &p, 1);
 }

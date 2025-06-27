@@ -1,36 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:14:39 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 10:15:41 by scheragh         ###   ########.fr       */
+/*   Created: 2024/11/26 20:25:23 by scheragh          #+#    #+#             */
+/*   Updated: 2024/12/11 18:35:13 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "../../inc/push_swap.h"
-#include <stdio.h>
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *src)
 {
-	t_node	*a;
+	int		src_len;
+	char	*result;
+	char	*res;
 
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
+	src_len = ft_strlen(src);
+	result = (char *)malloc(sizeof(*result) * (src_len + 1));
+	if (result == NULL)
+		return (NULL);
+	res = result;
+	while (*src)
 	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			printf("Length 5");
-		else
-			printf("very cool");
+		*res = *src;
+		res++;
+		src++;
 	}
-	free_stack(&a);
-	return (0);
+	*res = '\0';
+	return (result);
 }
