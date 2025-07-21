@@ -1,38 +1,26 @@
 #include "../../inc/push_swap.h"
+#include <stdio.h>
 
-int		get_second_min(t_node **a)
+void	sort_five(t_node **a, t_node **b)
 {
-	int		tmp;
-	int		second_min;
-	t_node	*head;
 
-	head = (*a);
-	while ((*a))
+	printf("%d", (*a));
+	//Push the first two off
+	pa(a, b, false);
+	pa(a, b, false);
+	while((*b))
 	{
-		if ((*a)->nbr > (a*)->next->nbr)
-		{
-			tmp = (*a)->nbr;
-			(*a)->nbr = (*a)->nbr->next;
-			(*a)->next->nbr = tmp;
-			(*a) = head;
-		}
-		else
-			(*a) = (*a)->next;
+		printf("%d", (*b)->nbr)
+		(*b) = (*b)->next;
 	}
-	second = (*a)->next->next->nbr;
-	return (second);
-}
-
-void	sort_five(t_node **a)
-{
-	t_node		*max_node;
-	t_node		*min_node;
-	t_node		*second_min;
-
-	min = get_min(*a);
-	second_min = get_pivot(*a);
-	pb(min, false);
-	pb(second_min, false);
-	sort_small_three(**a);
-	//pa(	
+	//Sort the remaining 3 in stack as
+	sort_three((a));
+	if ((*b)->nbr > (*a)->next->next->nbr)
+	{
+		if ((*b)->nbr < ((*a)->next->nbr))
+		{
+			pa(b, a, false);
+			ra(a, false);
+		}
+	}
 }

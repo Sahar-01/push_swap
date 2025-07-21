@@ -6,7 +6,7 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 09:57:44 by scheragh          #+#    #+#             */
-/*   Updated: 2025/06/27 09:57:56 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/07/21 11:38:40 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef PUSH_SWAP_H
@@ -47,6 +47,7 @@ void	ps_lstadd_back(t_node **stack, t_node *new);
 t_node	*find_last(t_node *stack);
 t_node	*find_first(t_node *stack);
 t_node	*get_max(t_node *stack);
+t_node	*get_min(t_node *stack);
 int		stack_len(t_node *stack);
 bool	sorted(t_node *stack);
 void	free_stack(t_node **stack);

@@ -1,63 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_utils.c                                      :+:      :+:    :+:   */
+/*   sort_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/27 10:03:48 by scheragh          #+#    #+#             */
-/*   Updated: 2025/07/21 08:12:30 by scheragh         ###   ########.fr       */
+/*   Created: 2025/07/21 08:12:47 by scheragh          #+#    #+#             */
+/*   Updated: 2025/07/21 08:24:19 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
 
-int	stack_len(t_node *stack)
+t_node	*get_max(t_node *stack)
 {
-	int	count;
+	long	max;
+	t_node	*max_node;
 
-	count = 0;
+	max = LONG_MIN;
 	if (!stack)
 		return (0);
 	while (stack)
 	{
+		if (stack->nbr > max)
+		{
+			max = stack->nbr;
+			max_node = stack;
+		}
 		stack = stack->next;
-		count++;
 	}
-	return (count);
+	return (max_node);
 }
 
-void	free_stack(t_node **stack)
+t_node	*get_min(t_node *stack)
 {
-	t_node	*tmp;
-	t_node	*current;
+	long	min;
+	t_node	*min_node;
 
+	min = LONG_MAX;
 	if (!stack)
-		return ;
-	current = *stack;
-	while (current)
+		return (0);
+	while (stack)
 	{
-		tmp = current->next;
-		current->nbr = 0;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
-}
-
-t_node	*find_last(t_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->next)
+		if (stack->nbr < min)
+		{
+			min = stack->nbr;
+			min_node = stack;
+		}
 		stack = stack->next;
-	return (stack);
-}
-
-t_node	*find_first(t_node *stack)
-{
-	if (!stack)
-		return (NULL);
-	while (stack->prev)
-		stack = stack->prev;
-	return (stack);
+	}
+	return (min_node);
 }

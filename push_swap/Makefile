@@ -15,6 +15,7 @@ SRC_FILES = \
 	$(SRC_DIR)/operations/rrotate.c\
 	$(SRC_DIR)/operations/sort_three.c \
 	$(SRC_DIR)/operations/stack_utils.c \
+	$(SRC_DIR)/operations/sort_utils.c \
     $(SRC_DIR)/operations/sorted.c \
 	$(SRC_DIR)/operations/swap.c \
 	$(SRC_DIR)/push_swap/main.c \
