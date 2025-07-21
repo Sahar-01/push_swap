@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else if (stack_len(a) == 5)
-			printf("Length 5");
+			sort_three(&a);
 		else
 			printf("very cool");
 	}
