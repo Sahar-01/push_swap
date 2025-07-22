@@ -15,7 +15,9 @@
 int	main(int argc, char **argv)
 {
 	t_node	*a;
+	t_node	*b;
 
+	b = NULL;
 	a = NULL;
 	if (argc == 1)
 		return (0);
@@ -27,7 +29,7 @@ int	main(int argc, char **argv)
 		else if (stack_len(a) == 3)
 			sort_three(&a);
 		else if (stack_len(a) == 5)
-			sort_three(&a);
+			sort_five(&a, &b);
 		else
 			printf("very cool");
 	}

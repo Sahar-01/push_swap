@@ -38,7 +38,6 @@ static void	push(t_node **dest, t_node **src)
 void	pa(t_node **a, t_node **b, bool printed)
 {
 	push(a, b);
-	printf("Here inside pa its done!");
 	if (!printed)
 		ft_printf("pa\n");
 }
@@ -46,7 +45,6 @@ void	pa(t_node **a, t_node **b, bool printed)
 void	pb(t_node **b, t_node **a, bool printed)
 {
 	push(b, a);
-	printf("Here inside pb its done!");
 	if (!printed)
 		ft_printf("pb\n");
 }

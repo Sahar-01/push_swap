@@ -54,7 +54,8 @@ void	free_stack(t_node **stack);
 void	index_stack(t_node **stack);
 void	init_stack(t_node **a, char **argv);
 void	sort_three(t_node **a);
-void	sort_five(t_node **a);
+void sort_five(t_node **a, t_node **b);
+
 /* ======== Operations ======== */
 
 void	sa(t_node **a, bool printed);
