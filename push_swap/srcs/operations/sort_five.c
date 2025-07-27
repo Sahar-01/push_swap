@@ -4,6 +4,8 @@
 void	swap_stack_b(t_node *node1, t_node *node2)
 {
 	t_node	*tmp;
+
+	tmp = (NULL);
 	if(node1->nbr > node2->nbr)
 	{
 		node1 = tmp;
@@ -54,23 +56,21 @@ void	insert_second(t_node **a, t_node **b, t_node *node2, int min, int max)
 	}
 }
 
-void	sort_five(t_node **a, t_node **b)
+void sort_five(t_node **a, t_node **b)
 {
-	int		val;
-	t_node	*insert1;
-	t_node	*insert2;
-	int		max;
-	int		min;
+    t_node  *insert1;
+    t_node  *insert2;
+    int     max;
+    int     min;
 
-	min = get_min(a);
-	max = get_max(a);
-	val = -8743974;
+    min = get_min(*a)->nbr;
+    max = get_max(*a)->nbr;
     pb(b, a, false);
     pb(b, a, false);
-	insert1 = (*b);
-	insert2 = insert1->next;
-	sort_three(a);
-	swap_stack_b(insert1, insert2);
+    insert1 = (*b);
+    insert2 = insert1->next;
+    sort_three(a);
+    swap_stack_b(insert1, insert2);
     insert_first(a, b, insert1, min, max);
-	insert_second(a, b, insert2, min, max);
+    insert_second(a, b, insert2, min, max);
 }

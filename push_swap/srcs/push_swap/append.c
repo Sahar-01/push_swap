@@ -10,8 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
-#include <stdlib.h>
-
+//FIX YOUR LIBFT SO YOU CAN USE YOUR LIBFT FUNCTIONS LATER
 t_node	*ps_lstnew(int value)
 {
 	t_node	*node;
