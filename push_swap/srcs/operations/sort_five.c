@@ -1,76 +1,49 @@
 #include "../../inc/push_swap.h"
-#include <stdio.h>
 
-void	swap_stack_b(t_node *node1, t_node *node2)
+int get_min_nbr(t_node *a)
 {
-	t_node	*tmp;
-
-	tmp = (NULL);
-	if(node1->nbr > node2->nbr)
-	{
-		node1 = tmp;
-		node2 = node1;
-		tmp = node2;
-	}
+    int min = a->nbr;
+    while (a)
+    {
+        if (a->nbr < min)
+            min = a->nbr;
+        a = a->next;
+    }
+    return min;
 }
 
-void	insert_first(t_node **a, t_node **b, t_node *node1, int min, int max)
+int get_pos(t_node *a, int val)
 {
-	if (node1->nbr == max)
-	{
-		pa(a, b, false);
-		ra(a, false);
-	}
-	else if(node1->nbr == min)
-		pa(a, b, false);
-	else
-	{
-		if ((node1->nbr > (*a)->nbr) && (node1->nbr < (*a)->next->nbr))
-		{
-			pa(a, b, false);
-			sa(a, false);
-		}
-		if((node1->nbr < max) && (node1->nbr > (*a)->next->nbr))
-		{
-			pa(a, b, false);
-			rra(a, false);
-			rra(a, false);
-			rra(a, false);
-			rra(a, false);
-		}
-	}
-}
-
-void	insert_second(t_node **a, t_node **b, t_node *node2, int min, int max)
-{
-	if (node2->nbr == max)
-	{
-		pa(a, b, false);
-		ra(a, false);
-	}
-	else if(node2->nbr == min)
-		pa(a, b, false);
-	else
-	{
-		pa(a, b, false);
-	}
+    int i = 0;
+    while (a)
+    {
+        if (a->nbr == val)
+            return i;
+        i++;
+        a = a->next;
+    }
+    return -1; // Should not happen if val is in the stack
 }
 
 void sort_five(t_node **a, t_node **b)
 {
-    t_node  *insert1;
-    t_node  *insert2;
-    int     max;
-    int     min;
+    int min;
 
-    min = get_min(*a)->nbr;
-    max = get_max(*a)->nbr;
-    pb(b, a, false);
-    pb(b, a, false);
-    insert1 = (*b);
-    insert2 = insert1->next;
-    sort_three(a);
-    swap_stack_b(insert1, insert2);
-    insert_first(a, b, insert1, min, max);
-    insert_second(a, b, insert2, min, max);
+    while (stack_len(*a) > 3)
+    {
+        min = get_min_nbr(*a);
+        while ((*a)->nbr != min)
+        {
+            if (get_pos(*a, min) <= stack_len(*a) / 2)
+                ra(a, false);
+            else
+                rra(a, false);
+        }
+        pb(b, a, false); // push the smallest to B
+    }
+
+    sort_three(a); // sort remaining 3 in A
+
+    while (*b)
+        pa(a, b, false); // push back from B to A
 }

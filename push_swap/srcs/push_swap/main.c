@@ -11,28 +11,34 @@
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
 
-int	main(int argc, char **argv)
+int main(int argc, char **argv)
 {
-	t_node	*a;
-	t_node	*b;
+    t_node *a = NULL;
+    t_node *b = NULL;
+    int size;
 
-	b = NULL;
-	a = NULL;
-	if (argc == 1)
-		return (0);
-	init_stack(&a, argv + 1);
-	if (!sorted(a))
-	{
-		if (stack_len(a) == 2)
-			sa(&a, false);
-		else if (stack_len(a) == 3)
-			sort_three(&a);
-		else if (stack_len(a) == 5)
-			sort_five(&a, &b);
-		else
-			sort_main(&a, &b);
-	}
-	free_stack(&a);
-	free_stack(&b);
-	return (0);
+    if (argc < 2)
+        return (0);
+
+    init_stack(&a, argv + 1);
+
+    if (sorted(a))
+    {
+        free_stack(&a);
+        return (0);
+    }
+
+    size = stack_len(a);
+    if (size == 2)
+        sa(&a, false);
+    else if (size == 3)
+        sort_three(&a);
+    else if (size <= 5)
+        sort_five(&a, &b);
+    else
+        sort_main(&a, &b);
+
+    free_stack(&a);
+    free_stack(&b);
+    return (0);
 }
