@@ -1,10 +1,9 @@
 #include "../../inc/push_swap.h"
 
-/* Get the number of bits needed to represent the largest index */
-static int	get_max_bits(t_node *stack)
+static int get_max_bits(t_node *stack)
 {
-	int	max;
-	int	bits;
+	int max;
+	int bits;
 
 	max = 0;
 	bits = 0;
@@ -19,13 +18,13 @@ static int	get_max_bits(t_node *stack)
 	return (bits);
 }
 
-void	sort_main(t_node **a, t_node **b)
+void sort_main(t_node **a, t_node **b)
 {
-	int		i;
-	int		j;
-	int		size;
-	int		max_bits;
-	t_node	*head;
+	int i;
+	int j;
+	int size;
+	int max_bits;
+	t_node *head;
 
 	size = stack_len(*a);
 	max_bits = get_max_bits(*a);

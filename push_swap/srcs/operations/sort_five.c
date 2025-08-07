@@ -32,12 +32,10 @@ t_node *get_tail(t_node *stack)
     return stack;
 }
 
-// A simple, robust sort_five implementation
 void sort_five(t_node **a, t_node **b)
 {
     t_node *min_node;
 
-    // Push the two smallest elements to b
     while (lstsize(*a) > 3)
     {
         min_node = get_min(*a);
@@ -46,15 +44,9 @@ void sort_five(t_node **a, t_node **b)
         else
             ra(a, false);
     }
-
-    // Sort the remaining three elements
     sort_three(a);
-
-    // Push the two elements back from b to a
     pa(a, b, false);
     pa(a, b, false);
-
-    // Final rotation to ensure the smallest element is at the top
     while ((*a)->nbr != get_min(*a)->nbr)
         ra(a, false);
 }

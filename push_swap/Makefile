@@ -1,14 +1,11 @@
 NAME = push_swap
 
-# Directories
 SRC_DIR = srcs
 LIBFT_DIR = libft
 INCLUDE_DIR = inc
 
-# Libft build
 LIBFT_A = $(LIBFT_DIR)/libft.a
 
-# Source files
 SRC_FILES = \
 	$(SRC_DIR)/operations/push.c \
 	$(SRC_DIR)/operations/rotate.c \
@@ -26,18 +23,15 @@ SRC_FILES = \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-# Compiler and flags
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -I$(INCLUDE_DIR) -I$(LIBFT_DIR)/inc
 
-# Rules
 .PHONY: all clean fclean re
 
 all: $(LIBFT_A) $(NAME)
 
 $(NAME): $(OBJ_FILES)
 	@$(CC) $(OBJ_FILES) $(LIBFT_A) -o $(NAME)
-	@echo "✅ push_swap compiled successfully"
 
 $(LIBFT_A):
 	@$(MAKE) -C $(LIBFT_DIR)
