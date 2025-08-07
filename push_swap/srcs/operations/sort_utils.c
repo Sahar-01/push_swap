@@ -10,43 +10,46 @@
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
+#include <limits.h>
 
-t_node	*get_max(t_node *stack)
+t_node *get_min(t_node *stack)
 {
-	long	max;
-	t_node	*max_node;
+	t_node *min_node;
+	long min_val;
 
-	max = LONG_MIN;
 	if (!stack)
-		return (0);
+		return (NULL);
+	min_val = LONG_MAX;
+	min_node = NULL;
 	while (stack)
 	{
-		if (stack->nbr > max)
+		if (stack->nbr < min_val)
 		{
-			max = stack->nbr;
-			max_node = stack;
-		}
-		stack = stack->next;
-	}
-	return (max_node);
-}
-
-t_node	*get_min(t_node *stack)
-{
-	long	min;
-	t_node	*min_node;
-
-	min = LONG_MAX;
-	if (!stack)
-		return (0);
-	while (stack)
-	{
-		if (stack->nbr < min)
-		{
-			min = stack->nbr;
+			min_val = stack->nbr;
 			min_node = stack;
 		}
 		stack = stack->next;
 	}
 	return (min_node);
+}
+
+t_node *get_max(t_node *stack)
+{
+	t_node *max_node;
+	long max_val;
+
+	if (!stack)
+		return (NULL);
+	max_val = LONG_MIN;
+	max_node = NULL;
+	while (stack)
+	{
+		if (stack->nbr > max_val)
+		{
+			max_val = stack->nbr;
+			max_node = stack;
+		}
+		stack = stack->next;
+	}
+	return (max_node);
 }

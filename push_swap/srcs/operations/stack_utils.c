@@ -11,9 +11,24 @@
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
 
-int	stack_len(t_node *stack)
+void free_stack(t_node **stack)
 {
-	int	count;
+	t_node *temp;
+
+	if (!stack || !*stack)
+		return;
+	while (*stack)
+	{
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
+	}
+	*stack = NULL;
+}
+
+int stack_len(t_node *stack)
+{
+	int count;
 
 	count = 0;
 	if (!stack)
@@ -26,25 +41,7 @@ int	stack_len(t_node *stack)
 	return (count);
 }
 
-void	free_stack(t_node **stack)
-{
-	t_node	*tmp;
-	t_node	*current;
-
-	if (!stack)
-		return ;
-	current = *stack;
-	while (current)
-	{
-		tmp = current->next;
-		current->nbr = 0;
-		free(current);
-		current = tmp;
-	}
-	*stack = NULL;
-}
-
-t_node	*find_last(t_node *stack)
+t_node *find_last(t_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -53,7 +50,7 @@ t_node	*find_last(t_node *stack)
 	return (stack);
 }
 
-t_node	*find_first(t_node *stack)
+t_node *find_first(t_node *stack)
 {
 	if (!stack)
 		return (NULL);

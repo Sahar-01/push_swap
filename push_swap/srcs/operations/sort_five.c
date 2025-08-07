@@ -1,44 +1,60 @@
 #include "../../inc/push_swap.h"
+#include <stdio.h>
 
-static void insert_element(t_node **a, t_node **b, t_node *overall_min, t_node *overall_max)
+int lstsize(t_node *lst)
 {
     int count = 0;
-    t_node *min = get_min(*a);
-    t_node *max = get_max(*a);
-
-    if ((*b)->nbr == overall_max->nbr || (*b)->nbr > max->nbr)
+    while (lst)
     {
-        pa(a, b, false);
-        ra(a, false);
+        count++;
+        lst = lst->next;
     }
-    else if ((*b)->nbr == overall_min->nbr || (*b)->nbr < min->nbr)
-        pa(a, b, false);
-    else
-    {
-        while ((*a)->index < (*b)->index && count < 3)
-        {
-            ra(a, false);
-            count++;
-        }
-        pa(a, b, false);
-        while (count > 0)
-        {
-            rra(a, false);
-            count--;
-        }
-    }
+    return count;
 }
 
+t_node *find_node_with_nbr(t_node *stack, int nbr)
+{
+    while (stack)
+    {
+        if (stack->nbr == nbr)
+            return stack;
+        stack = stack->next;
+    }
+    return NULL;
+}
+
+t_node *get_tail(t_node *stack)
+{
+    if (!stack)
+        return NULL;
+    while (stack->next)
+        stack = stack->next;
+    return stack;
+}
+
+// A simple, robust sort_five implementation
 void sort_five(t_node **a, t_node **b)
 {
-    t_node *overall_min;
-    t_node *overall_max;
+    t_node *min_node;
 
-    overall_min = get_min(*a);
-    overall_max = get_max(*a);
-    pb(b, a, false);
-    pb(b, a, false);
+    // Push the two smallest elements to b
+    while (lstsize(*a) > 3)
+    {
+        min_node = get_min(*a);
+        if (*a == min_node)
+            pb(b, a, false);
+        else
+            ra(a, false);
+    }
+
+    // Sort the remaining three elements
     sort_three(a);
-    insert_element(a, b, overall_min, overall_max);
-    insert_element(a, b, overall_min, overall_max);
+
+    // Push the two elements back from b to a
+    pa(a, b, false);
+    pa(a, b, false);
+
+    // Final rotation to ensure the smallest element is at the top
+    while ((*a)->nbr != get_min(*a)->nbr)
+        ra(a, false);
 }
