@@ -6,17 +6,17 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:03:48 by scheragh          #+#    #+#             */
-/*   Updated: 2025/07/21 08:12:30 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/08/08 15:44:55 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
 
-void free_stack(t_node **stack)
+void	free_stack(t_node **stack)
 {
-	t_node *temp;
+	t_node	*temp;
 
 	if (!stack || !*stack)
-		return;
+		return ;
 	while (*stack)
 	{
 		temp = (*stack)->next;
@@ -26,9 +26,9 @@ void free_stack(t_node **stack)
 	*stack = NULL;
 }
 
-int stack_len(t_node *stack)
+int	stack_len(t_node *stack)
 {
-	int count;
+	int		count;
 
 	count = 0;
 	if (!stack)
@@ -41,7 +41,7 @@ int stack_len(t_node *stack)
 	return (count);
 }
 
-t_node *find_last(t_node *stack)
+t_node	*find_last(t_node *stack)
 {
 	if (!stack)
 		return (NULL);
@@ -50,7 +50,7 @@ t_node *find_last(t_node *stack)
 	return (stack);
 }
 
-t_node *find_first(t_node *stack)
+t_node	*find_first(t_node *stack)
 {
 	if (!stack)
 		return (NULL);
