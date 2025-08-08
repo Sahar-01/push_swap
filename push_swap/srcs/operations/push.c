@@ -6,11 +6,10 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:00:22 by scheragh          #+#    #+#             */
-/*   Updated: 2025/07/21 14:00:09 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/08/08 19:34:55 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
-#include <stdio.h>
 
 static void	push(t_node **dest, t_node **src)
 {

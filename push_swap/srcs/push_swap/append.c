@@ -6,7 +6,7 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/27 10:13:33 by scheragh          #+#    #+#             */
-/*   Updated: 2025/08/08 15:55:02 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/08/08 19:23:02 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
@@ -19,7 +19,7 @@ t_node	*ps_lstnew(int value)
 	if (!node)
 		return (NULL);
 	node->nbr = value;
-	node->index = -1;
+	node->index = -0;
 	node->next = NULL;
 	node->prev = NULL;
 	return (node);

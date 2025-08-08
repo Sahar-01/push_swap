@@ -6,55 +6,63 @@
 /*   By: scheragh <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/08 15:47:07 by scheragh          #+#    #+#             */
-/*   Updated: 2025/08/08 15:53:00 by scheragh         ###   ########.fr       */
+/*   Updated: 2025/08/08 20:04:32 by scheragh         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../../inc/push_swap.h"
-#include <stdio.h>
 
-static int	get_max_bits(t_node *stack)
+static int	get_max_bit_count(t_node *stack)
 {
-	int		max;
-	int		bits;
+	int		max_index;
+	int		bit_count;
 
-	max = 0;
-	bits = 0;
+	max_index = 0;
+	bit_count = 0;
 	while (stack)
 	{
-		if (stack->index > max)
-			max = stack->index;
+		if (stack->index > max_index)
+			max_index = stack->index;
 		stack = stack->next;
 	}
-	while ((max >> bits) != 0)
-		bits++;
-	return (bits);
+	while ((max_index >> bit_count) != 0)
+		bit_count++;
+	return (bit_count);
+}
+
+static void	push_by_bit(t_node **a, t_node **b, int bit_pos, int total_elements)
+{
+	int		count;
+
+	count = 0;
+	while (count < total_elements)
+	{
+		if ((((*a)->index >> bit_pos) & 1) == 1)
+			ra(a, false);
+		else
+			pb(b, a, false);
+		count++;
+	}
+}
+
+static void	move_back_to_a(t_node **a, t_node **b)
+{
+	while (*b)
+		pa(a, b, false);
 }
 
 void	sort_main(t_node **a, t_node **b)
 {
-	int		i;
-	int		j;
-	int		size;
+	int		bit_pos;
+	int		total_elements;
 	int		max_bits;
-	t_node	*head;
 
-	size = stack_len(*a);
-	max_bits = get_max_bits(*a);
-	i = 0;
-	while (i < max_bits)
+	bit_pos = 0;
+	total_elements = stack_len(*a);
+	max_bits = get_max_bit_count(*a);
+	while (bit_pos < max_bits)
 	{
-		j = 0;
-		while (j < size)
-		{
-			head = *a;
-			if (((head->index >> i) & 1) == 1)
-				ra(a, false);
-			else
-				pb(b, a, false);
-			j++;
-		}
-		while (*b)
-			pa(a, b, false);
-		i++;
+		push_by_bit(a, b, bit_pos, total_elements);
+		move_back_to_a(a, b);
+		bit_pos++;
 	}
 }
